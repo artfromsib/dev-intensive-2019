@@ -15,14 +15,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.models.Bender
-import android.R.attr.bottom
-import android.graphics.Rect
-import android.util.DisplayMetrics
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.fragment.app.FragmentActivity
+
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -103,7 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun sendMessage(){
+    private fun sendMessage(){
         val(phrase,color)= benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
         messageEt.setText("")
         val (r,g,b) = color
@@ -130,25 +123,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun Activity.isKeyboardOpen(rootView: View): Boolean {
-        /* 128dp = 32dp * 4, minimum button height 32dp and generic 4 rows soft keyboard */
-        val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 128
 
-        val r = Rect()
-        rootView.getWindowVisibleDisplayFrame(r)
-        val dm = rootView.resources.displayMetrics
-        /* heightDiff = rootView height - status bar height (r.top) - visible frame height (r.bottom - r.top) */
-        val heightDiff = rootView.bottom - r.bottom
-        /* Threshold size: dp to pixels, multiply with display density */
-        val isKeyboardShown = heightDiff > SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD * dm.density
-
-        Log.d("M_MainActivity",
-            "isKeyboardShown ? " + isKeyboardShown + ", heightDiff:" + heightDiff + ", density:" + dm.density
-                    + "root view height:" + rootView.height + ", rect:" + r
-        )
-
-        return isKeyboardShown
-    }
 
 }
 

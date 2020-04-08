@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         messageEt.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 sendMessage()
-                hideSoftKeyboard()
+                hideKeyboard()
                 true
             } else {
                 false
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d("M_MainActivity","onSaveInstanceState ${benderObj.question.name}")
     }
 
-    fun Activity.hideSoftKeyboard() {
+    fun Activity.hideKeyboard() {
         if (currentFocus != null) {
             val inputMethodManager = getSystemService(Context
                 .INPUT_METHOD_SERVICE) as InputMethodManager

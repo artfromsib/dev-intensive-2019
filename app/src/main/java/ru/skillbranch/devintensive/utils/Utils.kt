@@ -20,6 +20,7 @@ object Utils {
 
     fun transliteration(payload: String, divider:String = " "): String {
         var resultString: String = ""
+        var temp: String = ""
         val parts: List<String>? = payload?.split(" ")
 
         val chars: MutableMap<Char, String> = mutableMapOf( 'а' to "a", 'б' to "b", 'в' to "v", 'г' to "g", 'д' to "d", 'е' to "e",
@@ -28,16 +29,23 @@ object Utils {
             'ы' to "i",'ь' to "", 'э' to "e", 'ю' to "yu",'я' to "ya"
         )
        for(i in 0..1) {
-           for (charPayload in parts?.getOrNull(i).toString()) {
+           temp = ""
+           for (charPayload in parts?.getOrNull(i).toString().toLowerCase()) {
                if (chars.containsKey(charPayload)) {
-                   resultString = resultString + chars.get(charPayload).toString()
+                   temp = temp + chars.get(charPayload).toString()
                } else {
-                   resultString = resultString + charPayload.toString()
+                   temp = temp + charPayload.toString()
                }
 
 
            }
-           if(i==0) resultString = resultString +divider
+
+           if(i==0){ resultString = firstUpperCase(temp) +divider
+           }else{
+               resultString = resultString + firstUpperCase(temp)
+           }
+
+
        }
         return resultString
     }
@@ -74,5 +82,8 @@ object Utils {
         else
             return "$firstInitial$lastInitial"
 
+    }
+    fun firstUpperCase(word: String?): String? {
+        return if (word == null || word.isEmpty()) "" else word.substring(0,1).toUpperCase() + word.substring(1)
     }
 }

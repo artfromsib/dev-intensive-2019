@@ -22,11 +22,11 @@ data class Chat(
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    private fun lastMessageDate(): Date?{
+     fun lastMessageDate(): Date?{
         return messages.lastOrNull()?.date
     }
 
-    private fun lastMessageShort(): Pair<String?, String?> = when (
+     fun lastMessageShort(): Pair<String?, String?> = when (
         val lastMessage = messages.lastOrNull() ){
         is TextMessage -> lastMessage.text to "${lastMessage.from?.firstName}"
         is ImageMessage -> "${lastMessage.from?.firstName} - отправил фото" to "${lastMessage.from?.firstName}"

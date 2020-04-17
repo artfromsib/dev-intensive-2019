@@ -10,11 +10,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.extensions.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 

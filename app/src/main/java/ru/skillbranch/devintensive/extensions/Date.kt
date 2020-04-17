@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.extensions
 import java.lang.IllegalStateException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -23,6 +24,19 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND) : Date{
     }
     this.time = time
     return this
+}
+
+fun Date.shortFormat(): String {
+    val pattern = if(this.isSameDay(Date())) "HH:mm" else "dd.MM.yy"
+    val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
+    return dateFormat.format(this)
+}
+
+fun Date.isSameDay(date:Date): Boolean {
+    val day1 = this.time/DAY
+    val day2 = date.time/ DAY
+    return day1 == day2
+
 }
 
 fun Date.humanizeDiff(date:Date = Date()): String {
